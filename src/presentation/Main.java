@@ -1,4 +1,4 @@
-package presentation;
+Manapackage presentation;
 
 import java.util.Locale;
 import javax.swing.SwingUtilities;
