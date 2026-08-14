@@ -1,5 +1,6 @@
 package presentation.view;
 
+
 import presentation.controller.EmergencyController;
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +74,15 @@ public class EmergencyPanel extends JFrame {
             boolean natije = start
                     ? emergencyController.faalKardanEmergency(bimarId)
                     : emergencyController.payanEmergency(bimarId);
-            JOptionPane.showMessageDialog(this, natije ? "عملیات با موفقیت انجام شد." : "عملیات انجام نشد.");
+
+            String payam = emergencyController.getLastMessage();
+            JOptionPane.showMessageDialog(this, payam != null ? payam
+                    : (natije ? "عملیات با موفقیت انجام شد." : "عملیات انجام نشد."));
+
+            String hoshdar = emergencyController.getLastAlertMessage();
+            if (hoshdar != null) {
+                JOptionPane.showMessageDialog(this, hoshdar, "هشدار بحرانی", JOptionPane.WARNING_MESSAGE);
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "لطفا شماره بیمار را به صورت عدد وارد کنید.");
         }

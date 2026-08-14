@@ -6,7 +6,9 @@ public abstract class Person {
     private String naam;
     private String shomareMeli;
     private int sen;
+    
 
+    
     public Person(int id, String naam, String shomareMeli, int sen) {
         this.id = id;
         this.naam = naam;
@@ -18,10 +20,13 @@ public abstract class Person {
         return id;
     }
 
+    
     public void setId(int id) {
         this.id = id;
     }
 
+    
+    
     public String getNaam() {
         return naam;
     }
@@ -34,9 +39,12 @@ public abstract class Person {
         return shomareMeli;
     }
 
+    
+    
     public void setShomareMeli(String shomareMeli) {
         this.shomareMeli = shomareMeli;
     }
+    
 
     public int getSen() {
         return sen;

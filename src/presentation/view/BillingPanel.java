@@ -5,12 +5,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+
 public class BillingPanel extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private BillingController billingController;
     private JTextField bimarIdField;
 
+    
+    
     public BillingPanel() {
         billingController = new BillingController();
         setTitle("صورتحساب بیمار");
@@ -38,7 +42,6 @@ public class BillingPanel extends JFrame {
         adiButton.setPreferredSize(buttonSize);
         adiButton.setMaximumSize(buttonSize);
         adiButton.setMinimumSize(buttonSize);
-
         jarahiButton.setPreferredSize(buttonSize);
         jarahiButton.setMaximumSize(buttonSize);
         jarahiButton.setMinimumSize(buttonSize);
@@ -107,12 +110,17 @@ public class BillingPanel extends JFrame {
                 natije = billingController.sabtBilEmergency(bimarId);
             }
 
-            JOptionPane.showMessageDialog(this, natije ? "صورتحساب با موفقیت صادر شد." : "صدور صورتحساب انجام نشد.");
+            String payam = billingController.getLastMessage();
+            JOptionPane.showMessageDialog(this, payam != null ? payam
+                    : (natije ? "صورتحساب با موفقیت صادر شد." : "صدور صورتحساب انجام نشد."));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "لطفا شماره بیمار را به صورت عدد وارد کنید.");
         }
     }
 
+    
+    
+    
     private void namayeshBil() {
         try {
             int bimarId = getBimarId();

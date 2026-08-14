@@ -1,5 +1,7 @@
 package presentation.view;
 
+
+
 import presentation.controller.ReportController;
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class ReportPanel extends JFrame {
     public ReportPanel() {
         reportController = new ReportController();
         setTitle("گزارش بیمارستان");
-        setSize(500, 500);
+        setSize(560, 620);
         setLocationRelativeTo(null);
         createPanel();
         applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

@@ -42,6 +42,8 @@ public class Department {
     public boolean zarfiatDarad() {
         return bimaran.size() < zarfiat;
     }
+    
+    
 
     public boolean addBimar(Patient patient) {
         if (patient == null) {
@@ -82,6 +84,7 @@ public class Department {
         }
     }
 
+    
     @Override
     public String toString() {
         return naamBakhsh + " | " + bimaran.size() + " / " + zarfiat;

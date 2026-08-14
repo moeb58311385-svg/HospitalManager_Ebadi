@@ -8,6 +8,9 @@ public class Doctor extends Person {
     private int saatPayan;
     private int zarfiatNobat;
     private int tedadNobat;
+    
+    
+    
 
     public Doctor(int id, String naam, String shomareMeli, int sen, String takhasos,
                   String naamBakhsh, int saatShoru, int saatPayan, int zarfiatNobat) {
@@ -33,6 +36,7 @@ public class Doctor extends Person {
         return saatShoru;
     }
 
+    
     public int getSaatPayan() {
         return saatPayan;
     }
@@ -45,6 +49,9 @@ public class Doctor extends Person {
         return tedadNobat;
     }
 
+    
+    
+    
     public void setTedadNobat(int tedadNobat) {
         this.tedadNobat = tedadNobat;
     }
@@ -53,6 +60,8 @@ public class Doctor extends Person {
         return saat >= saatShoru && saat <= saatPayan;
     }
 
+    
+    
     public boolean zarfiatDarad() {
         return tedadNobat < zarfiatNobat;
     }

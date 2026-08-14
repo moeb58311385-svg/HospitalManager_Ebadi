@@ -7,7 +7,8 @@ import java.awt.*;
 import java.util.ArrayList;
 public class AdmissionPanel extends JFrame {
 
-    private static final long serialVersionUID = 1590299647899258898L;
+   
+	private static final long serialVersionUID = 1590299647899258898L;
     private AdmissionController admissionController;
     private JTextField bimarIdField;
     private JTextField bakhshIdField;
@@ -40,6 +41,8 @@ public class AdmissionPanel extends JFrame {
         scrollPane.setPreferredSize(new Dimension(360, 100));
         return scrollPane;
     }
+    
+    
     private void createForm() {
         JLabel bimarIdLabel = new JLabel("شماره بیمار:");
         JLabel bakhshIdLabel = new JLabel("شماره بخش:");
@@ -67,6 +70,7 @@ public class AdmissionPanel extends JFrame {
         JScrollPane guidePane = createDepartmentGuide();
         guidePane.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+       
         bimarIdLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         bimarIdField.setAlignmentX(Component.CENTER_ALIGNMENT);
         bakhshIdLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -94,17 +98,27 @@ public class AdmissionPanel extends JFrame {
         bastariButton.addActionListener(e -> bastariBimar());
         exitButton.addActionListener(e -> dispose());
     }
+    
+    
+    
     private void bastariBimar() {
         try {
             int bimarId = Integer.parseInt(bimarIdField.getText());
             int bakhshId = Integer.parseInt(bakhshIdField.getText());
             boolean natije = admissionController.bastariBimar(bimarId, bakhshId);
+            String payam = admissionController.getLastMessage();
             if (natije) {
-                JOptionPane.showMessageDialog(this, "بیمار با موفقیت بستری شد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "بیمار با موفقیت بستری شد.");
                 bimarIdField.setText("");
                 bakhshIdField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "بستری بیمار انجام نشد. اطلاعات بیشتر را در کنسول ببینید.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "بستری بیمار انجام نشد.",
+                        "خطا", JOptionPane.ERROR_MESSAGE);
+            }
+
+            String hoshdar = admissionController.getLastAlertMessage();
+            if (hoshdar != null) {
+                JOptionPane.showMessageDialog(this, hoshdar, "هشدار بحرانی", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "لطفا شماره بیمار و شماره بخش را به صورت عدد وارد کنید.");

@@ -24,6 +24,8 @@ public class DischargePanel extends JFrame {
         applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
+    
+    
     private JScrollPane createDepartmentGuide() {
         JTextArea guideArea = new JTextArea();
         guideArea.setEditable(false);
@@ -61,7 +63,6 @@ public class DischargePanel extends JFrame {
         Dimension fieldSize = new Dimension(200, 35);
         bimarIdField.setPreferredSize(fieldSize);
         bimarIdField.setMaximumSize(fieldSize);
-
         bakhshIdField.setPreferredSize(fieldSize);
         bakhshIdField.setMaximumSize(fieldSize);
 
@@ -85,6 +86,8 @@ public class DischargePanel extends JFrame {
         tarkhisButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        
+        
         panel.add(Box.createVerticalGlue());
         panel.add(guidePane);
         panel.add(Box.createVerticalStrut(15));
@@ -112,13 +115,20 @@ public class DischargePanel extends JFrame {
             int bakhshId = Integer.parseInt(bakhshIdField.getText());
 
             boolean natije = admissionController.tarkhisBimar(bimarId, bakhshId);
+            String payam = admissionController.getLastMessage();
 
             if (natije) {
-                JOptionPane.showMessageDialog(this, "بیمار با موفقیت مرخص شد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "بیمار با موفقیت مرخص شد.");
                 bimarIdField.setText("");
                 bakhshIdField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "ترخیص بیمار انجام نشد.اطلاعات بیشتر را در کنسول ببینید.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "ترخیص بیمار انجام نشد.",
+                        "خطا", JOptionPane.ERROR_MESSAGE);
+            }
+
+            String hoshdar = admissionController.getLastAlertMessage();
+            if (hoshdar != null) {
+                JOptionPane.showMessageDialog(this, hoshdar, "پیام موفقیت", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (NumberFormatException e) {

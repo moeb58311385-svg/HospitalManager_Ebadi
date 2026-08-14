@@ -1,5 +1,6 @@
 package presentation.controller;
 
+
 import business.service.AppointmentService;
 import java.time.LocalDate;
 
@@ -17,5 +18,12 @@ public class AppointmentController {
 
     public boolean anjamVizit(int nobatId) {
         return appointmentService.anjamVizit(nobatId);
+    }
+    
+    
+    
+
+    public String getLastMessage() {
+        return appointmentService.getLastMessage();
     }
 }

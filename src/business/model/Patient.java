@@ -1,11 +1,16 @@
 package business.model;
 
+
+
 public class Patient extends Person {
 
     private boolean bastari;
     private boolean emergency;
     private int bakhshId;
+    
+    
 
+    
     public Patient(int id, String naam, String shomareMeli, int sen) {
         super(id, naam, shomareMeli, sen);
         this.bastari = false;
@@ -17,6 +22,8 @@ public class Patient extends Person {
         return bastari;
     }
 
+    
+    
     public void setBastari(boolean bastari) {
         this.bastari = bastari;
     }
@@ -25,6 +32,7 @@ public class Patient extends Person {
         return emergency;
     }
 
+    
     public void setEmergency(boolean emergency) {
         this.emergency = emergency;
     }
@@ -33,6 +41,8 @@ public class Patient extends Person {
         return bakhshId;
     }
 
+    
+    
     public void setBakhshId(int bakhshId) {
         this.bakhshId = bakhshId;
     }

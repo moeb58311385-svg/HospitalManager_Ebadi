@@ -1,5 +1,6 @@
 package data;
 
+
 import business.model.Doctor;
 import java.sql.*;
 import java.util.ArrayList;
@@ -88,6 +89,40 @@ public class DoctorDAO {
 
         } catch (SQLException e) {
             System.out.println("در دریافت پزشکان خطایی به وجود آمد: " + e.getMessage());
+        }
+
+        return pezeshkan;
+    }
+
+    
+    
+    public ArrayList<Doctor> getDoctorsByDepartmentName(String naamBakhsh) {
+        ArrayList<Doctor> pezeshkan = new ArrayList<>();
+        String sql = "SELECT * FROM doctors WHERE bakhsh = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, naamBakhsh);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Doctor pezeshk = new Doctor(
+                        result.getInt("id"),
+                        result.getString("naam"),
+                        "",
+                        0,
+                        result.getString("takhasos"),
+                        result.getString("bakhsh"),
+                        result.getInt("saat_shoru"),
+                        result.getInt("saat_payan"),
+                        result.getInt("zarfiat_nobat")
+                );
+                pezeshkan.add(pezeshk);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("در دریافت پزشکان بخش خطایی به وجود آمد: " + e.getMessage());
         }
 
         return pezeshkan;

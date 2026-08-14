@@ -1,5 +1,7 @@
 package presentation.view;
 
+
+
 import presentation.controller.AppointmentController;
 import javax.swing.*;
 import java.awt.*;
@@ -59,17 +61,21 @@ public class VisitPanel extends JFrame {
         exitButton.addActionListener(e -> dispose());
     }
 
+    
+    
     private void anjamVizit() {
         try {
             int nobatId = Integer.parseInt(nobatIdField.getText());
 
             boolean natije = appointmentController.anjamVizit(nobatId);
 
+            String payam = appointmentController.getLastMessage();
             if (natije) {
-                JOptionPane.showMessageDialog(this, "ویزیت با موفقیت انجام شد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "ویزیت با موفقیت انجام شد.");
                 nobatIdField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "انجام ویزیت با مشکل مواجه شد. اطلاعات بیشتر را در کنسول ببینید.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "انجام ویزیت با مشکل مواجه شد.",
+                        "خطا", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (NumberFormatException e) {

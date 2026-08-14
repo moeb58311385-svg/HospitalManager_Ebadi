@@ -1,5 +1,6 @@
 package presentation.controller;
 
+
 import business.service.ReportService;
 
 public class ReportController {
@@ -14,6 +15,9 @@ public class ReportController {
         reportService.namayeshGozaresh();
     }
 
+    
+    
+    
     public String getGozareshMatni() {
         return reportService.getGozareshMatni();
     }

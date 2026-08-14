@@ -1,5 +1,7 @@
 package data;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,10 +12,11 @@ public class DatabaseManager {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
+    
     public static Connection getConnection() {
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("اتصال به دیتابیس با موفقیت انجام شد.");
+            System.out.println("اتصال به پایگاه داده با موفقیت انجام شد.");
             return connection;
 
         } catch (SQLException e) {

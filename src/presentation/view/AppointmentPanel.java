@@ -1,5 +1,6 @@
 package presentation.view;
 
+
 import presentation.controller.AppointmentController;
 import business.model.Doctor;
 import data.DoctorDAO;
@@ -27,6 +28,8 @@ public class AppointmentPanel extends JFrame {
         createForm();
         applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
+    
+    
 
     private JScrollPane createDoctorGuide() {
         JTextArea guideArea = new JTextArea();
@@ -55,6 +58,9 @@ public class AppointmentPanel extends JFrame {
         return scrollPane;
     }
 
+    
+    
+    
     private void createForm() {
         JLabel bimarIdLabel = new JLabel("شماره بیمار:");
         JLabel doctorIdLabel = new JLabel("شماره پزشک:");
@@ -70,16 +76,16 @@ public class AppointmentPanel extends JFrame {
         Dimension fieldSize = new Dimension(200, 35);
         bimarIdField.setPreferredSize(fieldSize);
         bimarIdField.setMaximumSize(fieldSize);
-
         doctorIdField.setPreferredSize(fieldSize);
         doctorIdField.setMaximumSize(fieldSize);
-
         tarikhField.setPreferredSize(fieldSize);
         tarikhField.setMaximumSize(fieldSize);
-
         saatField.setPreferredSize(fieldSize);
         saatField.setMaximumSize(fieldSize);
 
+        
+        
+        
         Dimension buttonSize = new Dimension(200, 40);
         sabtButton.setPreferredSize(buttonSize);
         sabtButton.setMaximumSize(buttonSize);
@@ -131,6 +137,8 @@ public class AppointmentPanel extends JFrame {
         exitButton.addActionListener(e -> dispose());
     }
 
+    
+    
     private void sabtNobat() {
         try {
             int bimarId = Integer.parseInt(bimarIdField.getText());
@@ -140,14 +148,16 @@ public class AppointmentPanel extends JFrame {
 
             boolean natije = appointmentController.sabtNobat(bimarId, doctorId, tarikh, saat);
 
+            String payam = appointmentController.getLastMessage();
             if (natije) {
-                JOptionPane.showMessageDialog(this, "نوبت با موفقیت ثبت شد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "نوبت با موفقیت ثبت شد.");
                 bimarIdField.setText("");
                 doctorIdField.setText("");
                 tarikhField.setText("");
                 saatField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "ثبت نوبت انجام نشد.اطلاعات بیشتر را در کنسول ببینید.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "ثبت نوبت انجام نشد.",
+                        "خطا", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (DateTimeParseException e) {

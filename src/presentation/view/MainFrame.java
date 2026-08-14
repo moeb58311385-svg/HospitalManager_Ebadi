@@ -1,5 +1,7 @@
 package presentation.view;
 
+
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +12,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
         setTitle("سیستم مدیریت بیمارستان");
-        setSize(300, 550);
+        setSize(300, 610);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         createMenu();
@@ -29,6 +31,7 @@ public class MainFrame extends JFrame {
         JButton reportButton = new JButton("مشاهده گزارشات");
         JButton billingButton = new JButton("صورتحساب بیمار");
         JButton emergencyButton = new JButton("حالت اورژانس");
+        JButton departmentButton = new JButton("مدیریت بخش‌ها و پرسنل");
         JButton exitButton = new JButton("خروج");
         
         JPanel panel = new JPanel();
@@ -43,11 +46,9 @@ public class MainFrame extends JFrame {
         bastariButton.setPreferredSize(buttonSize);
         bastariButton.setMaximumSize(buttonSize);
         bastariButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
         nobatButton.setPreferredSize(buttonSize);
         nobatButton.setMaximumSize(buttonSize);
         nobatButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
         vizitButton.setPreferredSize(buttonSize);
         vizitButton.setMaximumSize(buttonSize);
         vizitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -63,11 +64,13 @@ public class MainFrame extends JFrame {
         billingButton.setPreferredSize(buttonSize);
         billingButton.setMaximumSize(buttonSize);
         billingButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
         emergencyButton.setPreferredSize(buttonSize);
         emergencyButton.setMaximumSize(buttonSize);
         emergencyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
+        departmentButton.setPreferredSize(buttonSize);
+        departmentButton.setMaximumSize(buttonSize);
+        departmentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setPreferredSize(buttonSize);
         exitButton.setMaximumSize(buttonSize);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -91,6 +94,8 @@ public class MainFrame extends JFrame {
         panel.add(Box.createVerticalStrut(10));
         panel.add(emergencyButton);
         panel.add(Box.createVerticalStrut(10));
+        panel.add(departmentButton);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(exitButton);
         
         panel.add(Box.createVerticalGlue());
@@ -103,6 +108,8 @@ public class MainFrame extends JFrame {
             PatientPanel panelBimar = new PatientPanel();
             panelBimar.setVisible(true);
         });
+        
+        
 
         bastariButton.addActionListener(e -> {
             AdmissionPanel admissionPanel = new AdmissionPanel();
@@ -113,6 +120,8 @@ public class MainFrame extends JFrame {
             AppointmentPanel appointmentPanel = new AppointmentPanel();
             appointmentPanel.setVisible(true);
         });
+        
+        
 
         vizitButton.addActionListener(e -> {
             VisitPanel visitPanel = new VisitPanel();
@@ -129,6 +138,8 @@ public class MainFrame extends JFrame {
             reportPanel.setVisible(true);
         });
 
+        
+        
         billingButton.addActionListener(e -> {
             BillingPanel billingPanel = new BillingPanel();
             billingPanel.setVisible(true);
@@ -137,6 +148,11 @@ public class MainFrame extends JFrame {
         emergencyButton.addActionListener(e -> {
             EmergencyPanel emergencyPanel = new EmergencyPanel();
             emergencyPanel.setVisible(true);
+        });
+
+        departmentButton.addActionListener(e -> {
+            DepartmentPanel departmentPanel = new DepartmentPanel();
+            departmentPanel.setVisible(true);
         });
     }
 }

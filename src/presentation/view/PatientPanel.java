@@ -1,5 +1,7 @@
 package presentation.view;
 
+
+
 import presentation.controller.PatientController;
 import javax.swing.*;
 import java.awt.*;
@@ -35,10 +37,8 @@ public class PatientPanel extends JFrame {
         Dimension fieldSize = new Dimension(200, 35);
         naamField.setPreferredSize(fieldSize);
         naamField.setMaximumSize(fieldSize);
-
         meliField.setPreferredSize(fieldSize);
         meliField.setMaximumSize(fieldSize);
-
         senField.setPreferredSize(fieldSize);
         senField.setMaximumSize(fieldSize);
 
@@ -82,6 +82,9 @@ public class PatientPanel extends JFrame {
         exitButton.addActionListener(e -> dispose());
     }
 
+    
+    
+    
     private void sabtBimar() {
         try {
             String naam = naamField.getText();
@@ -90,13 +93,15 @@ public class PatientPanel extends JFrame {
 
             boolean natije = patientController.sabtBimar(naam, meli, sen);
 
+            String payam = patientController.getLastMessage();
             if (natije) {
-                JOptionPane.showMessageDialog(this, "بیمار با موفقیت ثبت شد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "بیمار با موفقیت ثبت شد.");
                 naamField.setText("");
                 meliField.setText("");
                 senField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "ثبت بیمار انجام نشد.");
+                JOptionPane.showMessageDialog(this, payam != null ? payam : "ثبت بیمار انجام نشد.",
+                        "خطا", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (NumberFormatException e) {

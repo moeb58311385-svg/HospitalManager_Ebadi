@@ -1,5 +1,6 @@
 package data;
 
+
 import business.model.Department;
 import java.sql.*;
 import java.util.ArrayList;

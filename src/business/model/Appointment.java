@@ -12,7 +12,8 @@ public class Appointment {
     //private Date tarikh;
     private int saat;
     private boolean anjamShode;
-
+    
+    //برای ویزیت تعریف کردم
     public Appointment(int id, Patient bimar, Doctor doctor, LocalDate tarikh, int saat) {
         this.id = id;
         this.bimar = bimar;
@@ -26,6 +27,8 @@ public class Appointment {
         return id;
     }
 
+    
+    
     public Patient getBimar() {
         return bimar;
     }
@@ -34,6 +37,8 @@ public class Appointment {
         return doctor;
     }
 
+    
+    
     public LocalDate getTarikh() {
         return tarikh;
     }
